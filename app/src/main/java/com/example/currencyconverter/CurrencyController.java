@@ -1,10 +1,12 @@
 package com.example.currencyconverter;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,84 +22,46 @@ import cz.msebera.android.httpclient.Header;
 
 public class CurrencyController extends AppCompatActivity
 {
-   private final double USDTOBGN = 1.74;
-   private final double EURTOBGN = 1.96;
-   private final double GBPTOBGN = 2.26;
-   private final double BGNTOBGN = 1.00;
-
-   //final String SITE_URL = "http://api.openweathermap.org/data/2.5/forecast";
    final String SITE_URL = "https://api.exchangeratesapi.io/latest";
-   final String APP_ID = "52770061439cb080d24efa42a288a469";
+   //final String APP_ID = "52770061439cb080d24efa42a288a469";
+
 
    private Spinner spinOne;
    private Spinner spinTwo;
-
+   private EditText amount;
+   private TextView sum;
+   private String value;
+   private ImageView convertImage;
 
    @Override
    protected void onCreate(Bundle savedInstanceState)
    {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_main);
+      initViews();
+      //setSupportActionBar(toolbar);
 
-      spinOne = findViewById(R.id.spinnerFirstSelect);
-      spinTwo = findViewById(R.id.spinnerSecondSelect);
+      //initOnClick();
+   }
+
+   private void initOnClick() {
+      convertImage.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+
+         }
+      });
 
    }
 
-
-   public void onClickConvert(View view)
-   {
-
-      EditText amount = findViewById(R.id.editText2);
-      TextView sum = findViewById(R.id.textViewSum);
-      String value = amount.getText().toString();
-
-      String firstCurrencyName = String.valueOf(spinOne.getSelectedItem());
-      String secondCurrencyName = String.valueOf(spinTwo.getSelectedItem());
-
-      if(value.equals(""))
-      {
-         value = "1";
-      }
-
-      int amountSum = Integer.parseInt(value);
-
-
-      if ((firstCurrencyName.equals("USD")) && (secondCurrencyName.equals("BGN")))
-      {
-         double currentSum = USDTOBGN * amountSum;
-         sum.setText("" + currentSum);
-      }
-      else if((firstCurrencyName.equals("EUR")) && (secondCurrencyName.equals("BGN")))
-      {
-         double currentSum = EURTOBGN * amountSum;
-         sum.setText("" + currentSum);
-      }
-      else if((firstCurrencyName.equals("GBP")) && (secondCurrencyName.equals("BGN")))
-      {
-         double currentSum = GBPTOBGN * amountSum;
-         sum.setText("" + currentSum);
-      }
-      else if ((firstCurrencyName.equals("BGN")) && (secondCurrencyName.equals("BGN")))
-      {
-         double currentSum = BGNTOBGN * amountSum;
-         sum.setText("" + currentSum);
-      }
+   private void initViews() {
+      spinOne = findViewById(R.id.spinner_first);
+      spinTwo = findViewById(R.id.spinner_second);
+      amount = findViewById(R.id.edit_text_query);
+      sum = findViewById(R.id.text_view_query);
+      convertImage = findViewById(R.id.image_currency_convert);
+      Toolbar toolbar = findViewById(R.id.app_bar);
    }
-
-   public void onClickAPI(View view)
-   {
-      String firstCurrencyName = String.valueOf(spinOne.getSelectedItem());
-      String secondCurrencyName = String.valueOf(spinTwo.getSelectedItem());
-
-      RequestParams params = new RequestParams();
-      params.put("base",firstCurrencyName);
-      //params.put("symbols",secondCurrencyName);
-
-      getInfoFromAPI(params);
-   }
-
-
 
    private void getInfoFromAPI(RequestParams params)
    {
@@ -129,12 +93,5 @@ public class CurrencyController extends AppCompatActivity
             Toast.makeText(CurrencyController.this, "Status code " + statusCode,Toast.LENGTH_LONG).show();
          }
       });
-
-
-   }
-
-   private void updateUI(CurrencyModel model)
-   {
-      
    }
 }

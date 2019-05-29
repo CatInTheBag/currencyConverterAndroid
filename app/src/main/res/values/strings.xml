@@ -3,6 +3,9 @@
     <string name="app_textView_amount">Select amount</string>
     <string name="app_textView_sum">0</string>
     <string name="app_button">Convert</string>
+    <string name="app_name">CurrencyConverter</string>
+    <string name="hintOne">Set amount</string>
+    <string name="currency">Currency</string>
 
     <string-array name="select_currency">
         <item>BGN</item>
@@ -10,7 +13,6 @@
         <item>USD</item>
         <item>GBP</item>
     </string-array>
-    <string name="app_name">CurrencyConverter</string>
-    <string name="hintOne">Set amount</string>
+
 
 </resources>
