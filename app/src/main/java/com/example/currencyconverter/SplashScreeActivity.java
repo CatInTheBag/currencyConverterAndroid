@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 public class SplashScreeActivity extends AppCompatActivity {
 
-    private int SPLASH_TIME_OUT = 2000;
+    private int SPLASH_TIME_OUT = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,7 @@ public class SplashScreeActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreeActivity.this, CurrencyController.class));
+                startActivity(new Intent(SplashScreeActivity.this, CurrencyControllerActivity.class));
                 finish();
             }
         },SPLASH_TIME_OUT);

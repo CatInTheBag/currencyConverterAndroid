@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".CurrencyController"></activity>
+        <activity android:name=".CurrencyControllerActivity"></activity>
 
         <activity android:name=".SplashScreeActivity" android:noHistory="true">
             <intent-filter>

@@ -1,18 +1,18 @@
 <resources>
-    <string name="app_label_name">Currency Converter Lite</string>
-    <string name="app_textView_amount">Select amount</string>
+    <string name="app_label_name">Currency</string>
     <string name="app_textView_sum">0</string>
     <string name="app_button">Convert</string>
     <string name="app_name">CurrencyConverter</string>
     <string name="hintOne">Set amount</string>
     <string name="currency">Currency</string>
+    <string name="empty"></string>
 
-    <string-array name="select_currency">
+    <!--<string-array name="select_currency">
         <item>BGN</item>
         <item>EUR</item>
         <item>USD</item>
         <item>GBP</item>
-    </string-array>
+    </string-array>-->
 
 
 </resources>

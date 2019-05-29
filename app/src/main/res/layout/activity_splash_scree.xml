@@ -9,7 +9,7 @@
         android:id="@+id/image_currency_logo"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:src="@drawable/ic_cached_black_24dp"
+        android:src="@drawable/currency_logo"
         android:layout_above="@id/text_view_label"
         android:layout_centerHorizontal="true"
         />
@@ -18,8 +18,9 @@
         android:id="@+id/text_view_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Currency Converter"
+        android:text="@string/app_label_name"
         android:layout_centerInParent="true"
+
         android:layout_centerHorizontal="true"
         android:fontFamily="monospace"/>
 

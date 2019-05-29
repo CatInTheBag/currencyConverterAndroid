@@ -7,30 +7,33 @@ public class CurrencyModel
 {
    private String firstCurrencyName;
    private String secondCurrencyName;
-   private double firstCurrencyRate;
    private double secondCurrencyRate;
+   private String date;
 
-   public static CurrencyModel getDataFromJson(JSONObject obj, String firstCurrencyName, String secondCurrencyName) throws JSONException
+   public static CurrencyModel getDataFromJson(JSONObject obj, String secondCurrency)
    {
-      CurrencyModel data = new CurrencyModel();
-      data.firstCurrencyName = firstCurrencyName;
-      data.secondCurrencyName = secondCurrencyName;
-      data.secondCurrencyRate = Double.valueOf(obj.getJSONObject("rates").getDouble(secondCurrencyName));
-      return data;
-   }
+      try {
+         CurrencyModel data = new CurrencyModel();
 
-   public String getFirstCurrencyName()
-   {
-      return firstCurrencyName;
-   }
+         data.firstCurrencyName = obj.getString("base");
+         data.secondCurrencyName = secondCurrency;
+         data.secondCurrencyRate = Double.valueOf(obj.getJSONObject("rates").getDouble(secondCurrency));
+         data.date = obj.getString("date");
 
-   public String getSecondCurrencyName()
-   {
-      return secondCurrencyName;
+         return data;
+      } catch (JSONException e) {
+         e.printStackTrace();
+         return null;
+      }
+
    }
 
    public double getSecondCurrencyRate()
    {
       return secondCurrencyRate;
+   }
+
+   public String getDate() {
+      return date;
    }
 }
