@@ -10,7 +10,7 @@ public class CurrencyModel
    private double secondCurrencyRate;
    private String date;
 
-   public static CurrencyModel getDataFromJson(JSONObject obj, String secondCurrency)
+   static CurrencyModel getDataFromJson(JSONObject obj, String secondCurrency)
    {
       try {
          CurrencyModel data = new CurrencyModel();

@@ -122,7 +122,7 @@ public class CurrencyControllerActivity extends AppCompatActivity {
                 ;*/
 
                 model = CurrencyModel.getDataFromJson(response, secondCurrency);
-                Toast.makeText(CurrencyControllerActivity.this, model.getDate(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(CurrencyControllerActivity.this, model.getDate(), Toast.LENGTH_SHORT).show();
                 updateUI();
             }
 

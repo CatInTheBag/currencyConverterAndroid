@@ -14,7 +14,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="" />
+            app:title=""/>
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/edit_text_query"
                 android:layout_toEndOf="@+id/edit_text_query"
-                android:textAlignment="textStart"/>
+                android:textAlignment="textStart" />
 
                 <!--android:entries="@array/select_currency"-->
                  />
