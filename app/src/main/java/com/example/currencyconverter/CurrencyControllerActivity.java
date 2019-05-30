@@ -44,6 +44,7 @@ public class CurrencyControllerActivity extends AppCompatActivity {
     private String secondCurrency;
     private String firstCurrency;
     private CurrencyModel model;
+    private double sum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +56,16 @@ public class CurrencyControllerActivity extends AppCompatActivity {
     }
 
     private void updateUI() {
-        double amount = Double.valueOf(amountEditText.getText().toString());
-        double sum = amount * model.getSecondCurrencyRate();
+        double amount;
+
+        if(amountEditText.getText().toString().equals(""))
+        {
+            amount = 0;
+        } else {
+            amount = Double.valueOf(amountEditText.getText().toString());
+        }
+
+        sum = amount * model.getSecondCurrencyRate();
         double sumDecimal = BigDecimal.valueOf(sum)
                 .setScale(3, RoundingMode.HALF_UP)
                 .doubleValue();
