@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.currencyconverter.data.remote.CurrecnyModelTwo;
+import com.example.currencyconverter.data.remote.WebService;
 import com.example.currencyconverter.databinding.ActivityMainBinding;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -24,8 +26,13 @@ import org.json.JSONObject;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class CurrencyControllerActivity extends AppCompatActivity {
     final String SITE_URL = "https://api.exchangeratesapi.io/latest";
@@ -53,6 +60,31 @@ public class CurrencyControllerActivity extends AppCompatActivity {
         initViews();
         initSpinner();
         initOnClick();
+        
+        setupRetroFit();
+    }
+
+    private void setupRetroFit() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(SITE_URL)
+                .build();
+
+        WebService service = retrofit.create(WebService.class);
+        Call<List<CurrecnyModelTwo>> call = service.getCurrentCurrencyRate("USD");
+        call.enqueue(new Callback<List<CurrecnyModelTwo>>() {
+            @Override
+            public void onResponse(Call<List<CurrecnyModelTwo>> call, Response<List<CurrecnyModelTwo>> response) {
+                if(response != null && response.isSuccessful()){
+                    CurrecnyModelTwo model = (CurrecnyModelTwo) response.body();
+                    Toast.makeText(CurrencyControllerActivity.this,model.toString(),Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CurrecnyModelTwo>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void updateUI() {
